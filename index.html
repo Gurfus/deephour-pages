@@ -22,6 +22,7 @@
               },
               mint: '#98f5c0',
               sky: '#76c7ff',
+              amber: '#ffd16a',
             },
           },
         },
@@ -79,6 +80,24 @@
         .reveal.d4 { animation-delay: 330ms; }
         @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
       }
+      .gridline {
+        background-image:
+          linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
+        background-size: 44px 44px;
+        mask-image: radial-gradient(260px 220px at 50% 20%, black 45%, transparent 70%);
+        -webkit-mask-image: radial-gradient(260px 220px at 50% 20%, black 45%, transparent 70%);
+      }
+      .shine {
+        background:
+          radial-gradient(520px 320px at 18% 18%, rgba(152,245,192,0.22), transparent 55%),
+          radial-gradient(520px 320px at 82% 12%, rgba(118,199,255,0.18), transparent 58%),
+          radial-gradient(520px 360px at 52% 96%, rgba(255,209,106,0.10), transparent 62%);
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .floaty { animation: floaty 6.5s ease-in-out infinite; }
+        @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+      }
     </style>
   </head>
   <body>
@@ -91,6 +110,8 @@
         </a>
         <nav class="flex items-center gap-4 text-sm text-white/70">
           <a class="hover:text-white" href="#how">How it works</a>
+          <a class="hover:text-white" href="#screens">Screens</a>
+          <a class="hover:text-white" href="#pricing">Pricing</a>
           <a class="hover:text-white" href="#faq">FAQ</a>
           <a class="hover:text-white" href="./support/">Support</a>
           <a class="hover:text-white" href="./privacy/">Privacy</a>
@@ -127,6 +148,21 @@
               <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Reflection & recovery</span>
               <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Focus history</span>
             </div>
+
+            <div class="mt-8 grid gap-3 sm:grid-cols-3">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="text-xs font-semibold tracking-wide text-white/60">RITUAL</p>
+                <p class="mt-2 text-sm text-white/75">One uninterrupted hour. No hacks.</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="text-xs font-semibold tracking-wide text-white/60">CLARITY</p>
+                <p class="mt-2 text-sm text-white/75">Project + lever tasks = direction.</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="text-xs font-semibold tracking-wide text-white/60">RECOVERY</p>
+                <p class="mt-2 text-sm text-white/75">Reflect, reset, capture ideas.</p>
+              </div>
+            </div>
           </div>
 
           <aside class="reveal d2 rounded-2xl border border-white/15 bg-white/5 p-5 shadow-[0_18px_60px_rgba(0,0,0,0.35)]" id="download">
@@ -143,25 +179,168 @@
               <a class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10" href="./privacy/">Privacy policy</a>
             </div>
             <p class="mt-4 text-xs text-white/55">Tip: if subscriptions are not showing yet, Apple is still processing paid agreements and tax/banking.</p>
+
+            <div class="mt-5 rounded-2xl border border-white/10 bg-black/20 p-4">
+              <p class="text-xs font-semibold tracking-wide text-white/60">STATUS</p>
+              <p class="mt-2 text-xs text-white/70">Builds ship fast. Apple paperwork ships slow.</p>
+              <div class="mt-3 grid gap-2">
+                <div class="flex items-center justify-between gap-3 text-xs text-white/70">
+                  <span class="inline-flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-sky/80" aria-hidden="true"></span>TestFlight build</span>
+                  <span class="font-mono">OK</span>
+                </div>
+                <div class="flex items-center justify-between gap-3 text-xs text-white/70">
+                  <span class="inline-flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-amber/80" aria-hidden="true"></span>Paid apps agreement</span>
+                  <span class="font-mono">PROCESSING</span>
+                </div>
+              </div>
+            </div>
           </aside>
         </section>
 
         <section class="mt-14 reveal d3" id="how" aria-label="How it works">
-          <div class="grid gap-4 lg:grid-cols-3">
-            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-              <p class="text-xs font-semibold tracking-wide text-white/60">01</p>
-              <h3 class="mt-2 font-display text-xl font-semibold">One project</h3>
-              <p class="mt-2 text-sm text-white/70">Clarity beats options. Keep your focus in one place.</p>
+          <div class="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_18px_60px_rgba(0,0,0,0.35)]">
+            <div class="flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <p class="text-xs font-semibold tracking-wide text-white/60">HOW IT WORKS</p>
+                <h2 class="mt-2 font-display text-2xl font-semibold">A ritual, not a productivity circus.</h2>
+              </div>
+              <p class="max-w-[55ch] text-sm text-white/60">The app is the HOW. The habit is the outcome.</p>
             </div>
-            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-              <p class="text-xs font-semibold tracking-wide text-white/60">02</p>
-              <h3 class="mt-2 font-display text-xl font-semibold">Lever tasks</h3>
-              <p class="mt-2 text-sm text-white/70">Pick 1-3 actions that actually move your life forward.</p>
+
+            <div class="mt-6 grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+              <div class="shine floaty relative overflow-hidden rounded-2xl border border-white/10 bg-black/20 p-5">
+                <div class="gridline absolute inset-0 opacity-60" aria-hidden="true"></div>
+                <p class="relative text-xs font-semibold tracking-wide text-white/60">THE FLOW</p>
+                <ol class="relative mt-3 space-y-3 text-sm text-white/75">
+                  <li class="flex gap-3"><span class="mt-0.5 h-6 w-6 shrink-0 rounded-xl border border-white/10 bg-white/5 text-center text-xs leading-6">1</span><span><span class="font-semibold">Pick one project</span> to carry your focus.</span></li>
+                  <li class="flex gap-3"><span class="mt-0.5 h-6 w-6 shrink-0 rounded-xl border border-white/10 bg-white/5 text-center text-xs leading-6">2</span><span><span class="font-semibold">Choose 1-3 lever tasks</span> that move the needle.</span></li>
+                  <li class="flex gap-3"><span class="mt-0.5 h-6 w-6 shrink-0 rounded-xl border border-white/10 bg-white/5 text-center text-xs leading-6">3</span><span><span class="font-semibold">Enter deep work</span> for 60 minutes, distraction-free.</span></li>
+                  <li class="flex gap-3"><span class="mt-0.5 h-6 w-6 shrink-0 rounded-xl border border-white/10 bg-white/5 text-center text-xs leading-6">4</span><span><span class="font-semibold">Reflect + recover</span> to reset your mind and capture ideas.</span></li>
+                </ol>
+              </div>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <p class="text-xs font-semibold tracking-wide text-white/60">01</p>
+                  <h3 class="mt-2 font-display text-xl font-semibold">One project</h3>
+                  <p class="mt-2 text-sm text-white/70">Clarity beats options. Keep your focus in one place.</p>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <p class="text-xs font-semibold tracking-wide text-white/60">02</p>
+                  <h3 class="mt-2 font-display text-xl font-semibold">Lever tasks</h3>
+                  <p class="mt-2 text-sm text-white/70">Pick 1-3 actions that actually move your life forward.</p>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <p class="text-xs font-semibold tracking-wide text-white/60">03</p>
+                  <h3 class="mt-2 font-display text-xl font-semibold">Deep work ritual</h3>
+                  <p class="mt-2 text-sm text-white/70">Commit to one hour. Finish clean. No guilt loops.</p>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <p class="text-xs font-semibold tracking-wide text-white/60">04</p>
+                  <h3 class="mt-2 font-display text-xl font-semibold">Recovery mode</h3>
+                  <p class="mt-2 text-sm text-white/70">Ideas show up when you stop forcing them.</p>
+                </div>
+              </div>
             </div>
-            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
-              <p class="text-xs font-semibold tracking-wide text-white/60">03</p>
-              <h3 class="mt-2 font-display text-xl font-semibold">Deep work ritual</h3>
-              <p class="mt-2 text-sm text-white/70">Commit to one hour, end clean, and recover.</p>
+          </div>
+        </section>
+
+        <section class="mt-14" id="screens" aria-label="Screens">
+          <div class="reveal rounded-3xl border border-white/10 bg-white/5 p-6">
+            <div class="flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <p class="text-xs font-semibold tracking-wide text-white/60">SCREENS</p>
+                <h2 class="mt-2 font-display text-2xl font-semibold">What to screenshot for launch</h2>
+              </div>
+              <p class="max-w-[60ch] text-sm text-white/60">App Store screenshots are your biggest conversion lever. Show outcomes, not menus.</p>
+            </div>
+
+            <div class="mt-6 grid gap-4 lg:grid-cols-3">
+              <div class="rounded-2xl border border-white/10 bg-black/20 p-5">
+                <p class="text-xs font-semibold tracking-wide text-white/60">01</p>
+                <p class="mt-2 text-sm font-semibold">Your daily focus ritual</p>
+                <p class="mt-2 text-sm text-white/70">Home screen showing: today’s project + 1-3 lever tasks.</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-black/20 p-5">
+                <p class="text-xs font-semibold tracking-wide text-white/60">02</p>
+                <p class="mt-2 text-sm font-semibold">Deep work mode</p>
+                <p class="mt-2 text-sm text-white/70">Timer running, clean UI, “no distractions” vibe.</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-black/20 p-5">
+                <p class="text-xs font-semibold tracking-wide text-white/60">03</p>
+                <p class="mt-2 text-sm font-semibold">Progress & history</p>
+                <p class="mt-2 text-sm text-white/70">Calendar/heatmap + streak-like proof of consistency.</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-black/20 p-5">
+                <p class="text-xs font-semibold tracking-wide text-white/60">04</p>
+                <p class="mt-2 text-sm font-semibold">Reflection</p>
+                <p class="mt-2 text-sm text-white/70">End-of-session reflection prompt (calm, satisfying).</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-black/20 p-5">
+                <p class="text-xs font-semibold tracking-wide text-white/60">05</p>
+                <p class="mt-2 text-sm font-semibold">Recovery ideas</p>
+                <p class="mt-2 text-sm text-white/70">Quick capture or idea pool (DMN / recovery concept).</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-black/20 p-5">
+                <p class="text-xs font-semibold tracking-wide text-white/60">06</p>
+                <p class="mt-2 text-sm font-semibold">Premium unlock</p>
+                <p class="mt-2 text-sm text-white/70">Show iCloud Sync / extended durations as the upgrade.</p>
+              </div>
+            </div>
+
+            <div class="mt-6 rounded-2xl border border-white/10 bg-white/5 p-5">
+              <p class="text-xs font-semibold tracking-wide text-white/60">PLACEHOLDERS</p>
+              <p class="mt-2 text-sm text-white/70">When you have screenshots, drop them into <span class="font-mono">assets/screenshots/</span> and replace the placeholders below.</p>
+
+              <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-black/20">
+                  <div class="aspect-[9/19] w-full"></div>
+                  <div class="absolute inset-0 grid place-items-center text-xs text-white/55">Screenshot placeholder</div>
+                </div>
+                <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-black/20">
+                  <div class="aspect-[9/19] w-full"></div>
+                  <div class="absolute inset-0 grid place-items-center text-xs text-white/55">Screenshot placeholder</div>
+                </div>
+                <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-black/20">
+                  <div class="aspect-[9/19] w-full"></div>
+                  <div class="absolute inset-0 grid place-items-center text-xs text-white/55">Screenshot placeholder</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="mt-14" id="pricing" aria-label="Pricing">
+          <div class="reveal rounded-3xl border border-white/10 bg-white/5 p-6">
+            <div class="flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <p class="text-xs font-semibold tracking-wide text-white/60">PRICING</p>
+                <h2 class="mt-2 font-display text-2xl font-semibold">Simple subscription. Clear value.</h2>
+              </div>
+              <p class="max-w-[60ch] text-sm text-white/60">Your offerings will show once Apple finishes paid apps agreements and product statuses.</p>
+            </div>
+
+            <div class="mt-6 grid gap-4 lg:grid-cols-2">
+              <div class="rounded-2xl border border-white/10 bg-black/20 p-5">
+                <div class="flex items-baseline justify-between gap-3">
+                  <p class="text-sm font-semibold">Monthly</p>
+                  <p class="font-mono text-xs text-white/60">$2.99</p>
+                </div>
+                <ul class="mt-3 space-y-2 text-sm text-white/70">
+                  <li class="flex gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-mint" aria-hidden="true"></span>Premium durations (45, 60, 90, open)</li>
+                  <li class="flex gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-mint" aria-hidden="true"></span>iCloud sync (optional)</li>
+                  <li class="flex gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-mint" aria-hidden="true"></span>Extended history</li>
+                </ul>
+              </div>
+              <div class="rounded-2xl border border-mint/25 bg-[linear-gradient(180deg,rgba(152,245,192,0.10),rgba(255,255,255,0.04))] p-5">
+                <div class="flex items-baseline justify-between gap-3">
+                  <p class="text-sm font-semibold">Annual</p>
+                  <p class="font-mono text-xs text-white/60">$24.99</p>
+                </div>
+                <p class="mt-2 text-sm text-white/70">Best value if you’re building a long-term practice.</p>
+                <div class="mt-4">
+                  <a class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10" href="#download">Get TestFlight</a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -180,6 +359,14 @@
               <div class="rounded-xl border border-white/10 bg-black/20 p-4">
                 <p class="text-sm font-semibold">Does it sync across devices?</p>
                 <p class="mt-2 text-sm text-white/70">Optional iCloud sync is available (Premium). Local-only works by default.</p>
+              </div>
+              <div class="rounded-xl border border-white/10 bg-black/20 p-4">
+                <p class="text-sm font-semibold">What makes this different?</p>
+                <p class="mt-2 text-sm text-white/70">It is opinionated: fewer options, more clarity. You’re not tracking everything. You’re showing up.</p>
+              </div>
+              <div class="rounded-xl border border-white/10 bg-black/20 p-4">
+                <p class="text-sm font-semibold">How do I get TestFlight access?</p>
+                <p class="mt-2 text-sm text-white/70">Go to <a class="underline decoration-white/30 hover:decoration-white" href="./support/">Support</a> and we’ll add you.</p>
               </div>
             </div>
           </div>
