@@ -5,218 +5,166 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Deep Hour</title>
     <meta name="description" content="A simple system to build deep focus every day." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,350..900&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
+              sans: ['IBM Plex Sans', 'ui-sans-serif', 'system-ui'],
+            },
+            colors: {
+              ink: {
+                950: '#070b0a',
+                900: '#0a1410',
+              },
+              mint: '#98f5c0',
+              sky: '#76c7ff',
+            },
+          },
+        },
+      };
+    </script>
     <style>
-      :root {
-        --bg: #070b0a;
-        --bg2: #0a1410;
-        --text: #eef7f1;
-        --muted: rgba(238, 247, 241, 0.72);
-        --card: rgba(255, 255, 255, 0.06);
-        --stroke: rgba(255, 255, 255, 0.12);
-        --accent: #98f5c0;
-        --accent2: #76c7ff;
-      }
-      * { box-sizing: border-box; }
       html, body { height: 100%; }
       body {
-        margin: 0;
-        color: var(--text);
-        font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
         background:
-          radial-gradient(1200px 700px at 20% 10%, rgba(152, 245, 192, 0.14), transparent 60%),
-          radial-gradient(900px 600px at 80% 0%, rgba(118, 199, 255, 0.14), transparent 55%),
-          radial-gradient(900px 600px at 50% 90%, rgba(152, 245, 192, 0.08), transparent 60%),
-          linear-gradient(180deg, var(--bg), var(--bg2));
+          radial-gradient(1200px 700px at 18% 12%, rgba(152, 245, 192, 0.14), transparent 62%),
+          radial-gradient(1000px 700px at 82% 6%, rgba(118, 199, 255, 0.14), transparent 58%),
+          radial-gradient(900px 600px at 50% 92%, rgba(152, 245, 192, 0.08), transparent 60%),
+          linear-gradient(180deg, #070b0a, #0a1410);
       }
-      a { color: inherit; text-decoration: none; }
-      a:hover { text-decoration: underline; }
-      .wrap { max-width: 980px; margin: 0 auto; padding: 48px 20px 64px; }
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 48px;
+      .noise {
+        pointer-events: none;
+        position: fixed;
+        inset: 0;
+        opacity: 0.05;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/></filter><rect width="140" height="140" filter="url(%23n)" opacity="0.6"/></svg>');
       }
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        font-weight: 650;
-        letter-spacing: 0.2px;
-      }
-      .mark {
-        width: 28px;
-        height: 28px;
-        border-radius: 10px;
-        border: 1px solid var(--stroke);
-        background:
-          radial-gradient(16px 16px at 30% 30%, rgba(152, 245, 192, 0.9), transparent 60%),
-          radial-gradient(18px 18px at 70% 55%, rgba(118, 199, 255, 0.9), transparent 60%),
-          rgba(255, 255, 255, 0.04);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-      }
-      nav {
-        display: inline-flex;
-        gap: 14px;
-        align-items: center;
-        color: var(--muted);
-        font-size: 14px;
-      }
-      .hero {
-        display: grid;
-        grid-template-columns: 1.25fr 0.75fr;
-        gap: 24px;
-        align-items: start;
-      }
-      .title {
-        font-size: clamp(36px, 5vw, 58px);
-        line-height: 1.05;
-        letter-spacing: -0.02em;
-        margin: 0 0 14px;
-      }
-      .subtitle {
-        margin: 0;
-        max-width: 62ch;
-        color: var(--muted);
-        font-size: 18px;
-      }
-      .ctaRow {
-        display: flex;
-        gap: 12px;
-        margin-top: 22px;
-        flex-wrap: wrap;
-      }
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 12px 14px;
-        border-radius: 12px;
-        border: 1px solid var(--stroke);
-        background: rgba(255, 255, 255, 0.06);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
-      }
-      .btnPrimary {
-        border-color: rgba(152, 245, 192, 0.35);
-        background: linear-gradient(180deg, rgba(152, 245, 192, 0.18), rgba(152, 245, 192, 0.08));
-      }
-      .btn small { color: var(--muted); font-size: 12px; }
-      .card {
-        border: 1px solid var(--stroke);
-        border-radius: 16px;
-        background: var(--card);
-        padding: 18px;
-      }
-      .card h3 { margin: 0 0 8px; font-size: 14px; color: var(--muted); font-weight: 600; }
-      .card p { margin: 0; font-size: 14px; }
-      .list { margin: 12px 0 0; padding-left: 18px; color: var(--muted); }
-      .grid {
-        margin-top: 44px;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 14px;
-      }
-      .pill {
-        display: inline-flex;
-        gap: 8px;
-        align-items: center;
-        padding: 8px 10px;
-        border: 1px solid var(--stroke);
-        border-radius: 999px;
-        color: var(--muted);
-        font-size: 13px;
-        background: rgba(255, 255, 255, 0.04);
-      }
-      .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 999px;
-        background: var(--accent);
-        box-shadow: 0 0 0 4px rgba(152, 245, 192, 0.15);
-      }
-      footer {
-        margin-top: 58px;
-        display: flex;
-        gap: 16px;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        color: var(--muted);
-        font-size: 13px;
-      }
-      @media (max-width: 860px) {
-        .hero { grid-template-columns: 1fr; }
-        .grid { grid-template-columns: 1fr; }
+      @media (prefers-reduced-motion: no-preference) {
+        .reveal { opacity: 0; transform: translateY(10px); animation: reveal 650ms ease-out forwards; }
+        .reveal.d2 { animation-delay: 110ms; }
+        .reveal.d3 { animation-delay: 220ms; }
+        .reveal.d4 { animation-delay: 330ms; }
+        @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
       }
     </style>
   </head>
   <body>
-    <div class="wrap">
-      <header>
-        <div class="brand">
-          <div class="mark" aria-hidden="true"></div>
-          <div>Deep Hour</div>
-        </div>
-        <nav>
-          <a href="./support/">Support</a>
-          <span aria-hidden="true">·</span>
-          <a href="./privacy/">Privacy</a>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="mx-auto max-w-6xl px-5 pb-16 pt-12 text-slate-50">
+      <header class="flex items-center justify-between gap-4">
+        <a class="inline-flex items-center gap-3" href="./">
+          <span class="h-9 w-9 rounded-xl border border-white/15 bg-white/5 shadow-[0_18px_60px_rgba(0,0,0,0.35)]"></span>
+          <span class="font-sans text-[15px] font-semibold tracking-wide text-white/90">Deep Hour</span>
+        </a>
+        <nav class="flex items-center gap-4 text-sm text-white/70">
+          <a class="hover:text-white" href="#how">How it works</a>
+          <a class="hover:text-white" href="#faq">FAQ</a>
+          <a class="hover:text-white" href="./support/">Support</a>
+          <a class="hover:text-white" href="./privacy/">Privacy</a>
         </nav>
       </header>
 
-      <main>
-        <section class="hero">
-          <div>
-            <h1 class="title">Build deep focus.<br />One hour a day.</h1>
-            <p class="subtitle">A simple system to turn focus into a daily ritual: one project, 1-3 lever tasks, one uninterrupted hour, and a clean reset.</p>
-            <div class="ctaRow">
-              <a class="btn btnPrimary" href="#download" aria-label="Download Deep Hour">
-                <span>Get it on iOS</span>
-                <small>(App Store soon)</small>
+      <main class="mt-12">
+        <section class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]" aria-label="Hero">
+          <div class="reveal">
+            <p class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/75">
+              <span class="h-2 w-2 rounded-full bg-mint shadow-[0_0_0_6px_rgba(152,245,192,0.12)]" aria-hidden="true"></span>
+              TestFlight available. App Store coming soon.
+            </p>
+            <h1 class="mt-5 font-display text-4xl font-semibold leading-[1.02] tracking-[-0.02em] sm:text-6xl">
+              Build deep focus.
+              <span class="block text-white/85">One hour a day.</span>
+            </h1>
+            <p class="mt-5 max-w-[65ch] text-lg text-white/70">
+              A simple system to turn focus into a daily ritual: one project, 1-3 lever tasks, one uninterrupted hour, and a clean reset.
+            </p>
+
+            <div class="mt-7 flex flex-wrap gap-3">
+              <a class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm font-semibold text-white shadow-[0_18px_60px_rgba(0,0,0,0.35)] hover:bg-white/10" href="#download">
+                Get it on iOS
+                <span class="text-xs font-medium text-white/60">(TestFlight)</span>
               </a>
-              <a class="btn" href="./privacy/">Privacy Policy</a>
-              <a class="btn" href="./support/">Support</a>
+              <a class="inline-flex items-center gap-2 rounded-xl border border-mint/35 bg-[linear-gradient(180deg,rgba(152,245,192,0.18),rgba(152,245,192,0.08))] px-4 py-3 text-sm font-semibold text-white shadow-[0_18px_60px_rgba(0,0,0,0.35)] hover:brightness-110" href="#how">
+                See the ritual
+              </a>
             </div>
-            <div style="margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap;">
-              <span class="pill"><span class="dot" aria-hidden="true"></span>Deep work sessions</span>
-              <span class="pill"><span class="dot" aria-hidden="true" style="background: var(--accent2); box-shadow: 0 0 0 4px rgba(118,199,255,0.15);"></span>Reflection & recovery</span>
-              <span class="pill"><span class="dot" aria-hidden="true" style="background: #ffd16a; box-shadow: 0 0 0 4px rgba(255,209,106,0.15);"></span>Focus history</span>
+
+            <div class="mt-7 flex flex-wrap gap-2 text-xs text-white/65">
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Deep work sessions</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Reflection & recovery</span>
+              <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Focus history</span>
             </div>
           </div>
-          <aside class="card" id="download">
-            <h3>Download</h3>
-            <p>Deep Hour is currently in TestFlight. If you need access, contact support.</p>
-            <ul class="list">
-              <li><a href="./support/">Support</a></li>
-              <li><a href="./privacy/">Privacy Policy</a></li>
-            </ul>
+
+          <aside class="reveal d2 rounded-2xl border border-white/15 bg-white/5 p-5 shadow-[0_18px_60px_rgba(0,0,0,0.35)]" id="download">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="text-xs font-semibold tracking-wide text-white/60">DOWNLOAD</p>
+                <h2 class="mt-2 font-display text-2xl font-semibold">TestFlight</h2>
+                <p class="mt-2 text-sm text-white/70">If you need access, contact support. We will add you to the internal group.</p>
+              </div>
+              <div class="h-12 w-12 rounded-2xl border border-white/10 bg-[radial-gradient(18px_18px_at_30%_30%,rgba(152,245,192,0.9),transparent_60%),radial-gradient(18px_18px_at_70%_55%,rgba(118,199,255,0.9),transparent_60%),rgba(255,255,255,0.04)]" aria-hidden="true"></div>
+            </div>
+            <div class="mt-5 grid gap-3">
+              <a class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10" href="./support/">Contact support</a>
+              <a class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90 hover:bg-white/10" href="./privacy/">Privacy policy</a>
+            </div>
+            <p class="mt-4 text-xs text-white/55">Tip: if subscriptions are not showing yet, Apple is still processing paid agreements and tax/banking.</p>
           </aside>
         </section>
 
-        <section class="grid" aria-label="Highlights">
-          <div class="card">
-            <h3>One project</h3>
-            <p>Clarity beats options. Keep your focus in one place.</p>
+        <section class="mt-14 reveal d3" id="how" aria-label="How it works">
+          <div class="grid gap-4 lg:grid-cols-3">
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <p class="text-xs font-semibold tracking-wide text-white/60">01</p>
+              <h3 class="mt-2 font-display text-xl font-semibold">One project</h3>
+              <p class="mt-2 text-sm text-white/70">Clarity beats options. Keep your focus in one place.</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <p class="text-xs font-semibold tracking-wide text-white/60">02</p>
+              <h3 class="mt-2 font-display text-xl font-semibold">Lever tasks</h3>
+              <p class="mt-2 text-sm text-white/70">Pick 1-3 actions that actually move your life forward.</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <p class="text-xs font-semibold tracking-wide text-white/60">03</p>
+              <h3 class="mt-2 font-display text-xl font-semibold">Deep work ritual</h3>
+              <p class="mt-2 text-sm text-white/70">Commit to one hour, end clean, and recover.</p>
+            </div>
           </div>
-          <div class="card">
-            <h3>Lever tasks</h3>
-            <p>Pick 1-3 actions that actually move your life forward.</p>
-          </div>
-          <div class="card">
-            <h3>Deep work ritual</h3>
-            <p>Commit to one hour, end clean, and recover.</p>
+        </section>
+
+        <section class="mt-14 reveal d4" id="faq" aria-label="FAQ">
+          <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div class="flex flex-wrap items-baseline justify-between gap-3">
+              <h2 class="font-display text-2xl font-semibold">FAQ</h2>
+              <p class="text-sm text-white/60">Keep it simple. No hacks.</p>
+            </div>
+            <div class="mt-5 grid gap-4 lg:grid-cols-2">
+              <div class="rounded-xl border border-white/10 bg-black/20 p-4">
+                <p class="text-sm font-semibold">Is Deep Hour a Pomodoro app?</p>
+                <p class="mt-2 text-sm text-white/70">No. It is a system: one project, lever tasks, one uninterrupted hour, and recovery.</p>
+              </div>
+              <div class="rounded-xl border border-white/10 bg-black/20 p-4">
+                <p class="text-sm font-semibold">Does it sync across devices?</p>
+                <p class="mt-2 text-sm text-white/70">Optional iCloud sync is available (Premium). Local-only works by default.</p>
+              </div>
+            </div>
           </div>
         </section>
       </main>
 
-      <footer>
+      <footer class="mt-14 flex flex-wrap items-center justify-between gap-3 text-xs text-white/60">
         <div>Deep Hour</div>
-        <div>
-          <a href="./support/">Support</a>
-          <span aria-hidden="true"> · </span>
-          <a href="./privacy/">Privacy</a>
+        <div class="flex items-center gap-3">
+          <a class="hover:text-white" href="./support/">Support</a>
+          <span aria-hidden="true">·</span>
+          <a class="hover:text-white" href="./privacy/">Privacy</a>
         </div>
       </footer>
     </div>
